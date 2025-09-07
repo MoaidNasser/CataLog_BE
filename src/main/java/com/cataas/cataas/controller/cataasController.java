@@ -27,4 +27,9 @@ public class cataasController {
     public List<Cat> getCats() {
         return cataasservice.getCats();
     }
+
+    @GetMapping("get-as-dto")
+    public List<CataasDto> getAsDto() {
+        return cataasservice.getAsDto();
+    }
 }

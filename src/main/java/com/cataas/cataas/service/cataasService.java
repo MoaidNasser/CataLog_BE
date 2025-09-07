@@ -1,5 +1,6 @@
 package com.cataas.cataas.service;
 
+import com.cataas.cataas.dto.CataasDto;
 import com.cataas.cataas.model.Cat;
 import com.cataas.cataas.repository.cataasRepository;
 import org.springframework.core.ParameterizedTypeReference;
@@ -20,11 +21,13 @@ public class cataasService {
     private final WebClient client = WebClient.create("https://cataas.com");
 
     public void getCatsFromApi() {
-        saveToDB(client.get()
+        if (cataasrepository.count() == 0)
+             saveToDB(client.get()
                 .uri("/api/cats?skip=0&limit=5000")
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<Cat>>() {})
                 .block());
+
     }
 
     public void saveToDB(List<Cat> cats) {
@@ -33,5 +36,11 @@ public class cataasService {
 
     public List<Cat> getCats() {
         return cataasrepository.findAll();
+    }
+
+    public List<CataasDto> getAsDto() {
+        return cataasrepository.findAll().stream().map(cat ->
+                new CataasDto(cat.getId(), cat.getCreatedAt(),cat.getTags())
+                ).toList();
     }
 }
