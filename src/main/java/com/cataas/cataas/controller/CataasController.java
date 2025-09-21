@@ -11,10 +11,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("cats")
-public class cataasController {
+public class CataasController {
     private final cataasService cataasservice;
 
-    public cataasController(cataasService cataasservice) {
+    public CataasController(cataasService cataasservice) {
         this.cataasservice = cataasservice;
     }
 
