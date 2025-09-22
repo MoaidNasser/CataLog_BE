@@ -2,12 +2,14 @@ package com.cataas.cataas.controller;
 
 import com.cataas.cataas.dto.UserDto;
 import com.cataas.cataas.model.User;
+import com.cataas.cataas.security.JwtUtil;
 import com.cataas.cataas.service.UserServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("user")
-@CrossOrigin(origins = "http://localhost:59262")
+@CrossOrigin(origins = "*")
 public class UserController {
 
     private UserServices userServices;
@@ -20,6 +22,8 @@ public class UserController {
     public void register(@RequestBody User user) {
 
         userServices.register(user);
-        System.out.println(user);
     }
+
+
 }
+
