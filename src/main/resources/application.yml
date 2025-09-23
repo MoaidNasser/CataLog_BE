@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/cats
+    url: jdbc:postgresql://localhost:5432/catalog
     username: moaid
     password: 1234
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -11,5 +12,18 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: moaidnasser19@gmail.com
+    password: fjvh cxbs lolx rilz
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 server:
   port: 8090

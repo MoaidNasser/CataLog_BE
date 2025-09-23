@@ -23,8 +23,8 @@ public class AuthController {
         User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!user.getPassword().equals(loginRequest.getPassword())) {
-            throw new RuntimeException("Invalid password");
+        if (!user.getPassword().equals(loginRequest.getPassword()) || !user.isEnabled()) {
+            throw new RuntimeException("Invalid password || Not activated");
         }
 
         return jwtUtil.generateToken(user.getEmail(), user.getRole());
